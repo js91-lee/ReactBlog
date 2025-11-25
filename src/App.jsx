@@ -4,13 +4,31 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  let post = '강남 우동 맛집';
+  let [글제목, b] = useState('남자 코트추천');
+  let [글제목1, b1] = useState('강남 우동맛집');
+  let [글제목2, b2] = useState('파이썬독학');
 
   return (
-   <div>
-    
+   <div className='App'>
+    <div className='black-nav'>
+      <h4>ReactBlog</h4>
+    </div>
+    <div className='list'>
+      <h4>{ 글제목 }</h4>
+      <p>2월 17일 발행</p>
+    </div>
+    <div className='list'>
+      <h4>{ 글제목1 }</h4>
+      <p>2월 17일 발행</p>
+    </div>
+    <div className='list'>
+      <h4>{ 글제목2 }</h4>
+      <p>2월 17일 발행</p>
+    </div>
    </div>
-  )
+  );
 }
 
 export default App
