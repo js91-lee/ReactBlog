@@ -8,6 +8,7 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자 코트추천', '강남 우동맛집', '파이썬독학']);
   let [따봉, 따봉변경] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
+  let [선택한글, 선택한글변경] = useState(0);
 
   return (
    <div className='App'>
@@ -47,7 +48,7 @@ function App() {
         return (
           <div className='list' key={i}>
             <div>
-            <h4 onClick={()=>{ setModal(!modal) }}>{ 글제목[i] }
+            <h4 onClick={()=>{ setModal(!modal); 선택한글변경(i); }}>{ 글제목[i] }
               <span onClick={(e) => {
                 e.stopPropagation();  
                 let 따봉각자 = [...따봉]; 
@@ -60,20 +61,20 @@ function App() {
         );
       })
     }
-    
-    { 
-      modal == true ? <Modal></Modal> : null
-    }
+      { 
+      modal == true ? <Modal color={'yellow'} 글제목={글제목} 선택한글={선택한글}/> : null
+      }
    </div>
   );
 }
 
-function Modal(){
+function Modal(props){
   return (
-    <div className='modal'>
-      <h4>제목</h4>
+    <div className='modal' style={{background : props.color}}>
+      <h4>{props.글제목[props.선택한글]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button>글수정</button>
     </div>
   ) 
 }
