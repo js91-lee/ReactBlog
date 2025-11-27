@@ -11,6 +11,13 @@ div {
     text-align: left;
 }
 
+.modal {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #eee;
+    text-align: left;
+}
+
 .black-nav{
     display: flex;
     background: black;
