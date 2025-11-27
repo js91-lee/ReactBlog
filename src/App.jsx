@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   
   let [글제목, 글제목변경] = useState(['남자 코트추천', '강남 우동맛집', '파이썬독학']);
   let [따봉, 따봉변경] = useState([0,0,0]);
-  let 
   let [modal, setModal] = useState(false);
 
   return (
@@ -45,10 +46,18 @@ function App() {
       글제목.map(function(a, i){
         return (
           <div className='list' key={i}>
-            <h4 onClick={()=>{ setModal(!modal) }}>{ 글제목[i] }</h4><h4><span onClick={()=>{ 따봉변경(따봉+1) }}>👍</span>{따봉[i]}</h4>
+            <div>
+            <h4 onClick={()=>{ setModal(!modal) }}>{ 글제목[i] }
+              <span onClick={(e) => {
+                e.stopPropagation();  
+                let 따봉각자 = [...따봉]; 
+                따봉각자[i] += 1; 
+                따봉변경(따봉각자);
+                }}>👍</span>{따봉[i]}</h4>
+            </div>
             <p>2월 17일 발행</p>
           </div>
-        )
+        );
       })
     }
     
