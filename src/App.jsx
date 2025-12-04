@@ -27,21 +27,6 @@ function App() {
       copy.sort();
       글제목변경(copy)
     } }> 정렬버튼 </button>
-  
-    
-    {/* <div className='list'>
-      <h4>{ 글제목[0] }<span onClick={()=>{ 따봉변경(따봉+1) }}>👍</span>
-      {따봉} </h4>
-      <p>2월 17일 발행</p>
-    </div>
-    <div className='list'>
-      <h4>{ 글제목[1] }</h4>
-      <p>2월 17일 발행</p>
-    </div>
-    <div className='list'>
-      <h4 onClick={()=>{ setModal(!modal) }}>{ 글제목[2] }</h4>
-      <p>2월 17일 발행</p>
-    </div> */}
 
     {
       글제목.map(function(a, i){
@@ -61,8 +46,11 @@ function App() {
         );
       })
     }
+
+    <input></input>
+    
       { 
-      modal == true ? <Modal color={'yellow'} 글제목={글제목} 선택한글={선택한글}/> : null
+      modal == true ? <Modal color={'yellow'} 글제목={글제목} 선택한글={선택한글} 글제목변경={글제목변경}/> : null
       }
    </div>
   );
@@ -74,7 +62,10 @@ function Modal(props){
       <h4>{props.글제목[props.선택한글]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
-      <button>글수정</button>
+      <button onClick={()=>{
+        let copy = [...props.글제목];
+        copy[props.선택한글] = '여자 코트추천';
+        props.글제목변경(copy);}}>글수정</button>
     </div>
   ) 
 }
