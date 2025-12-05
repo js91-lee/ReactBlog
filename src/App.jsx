@@ -9,6 +9,7 @@ function App() {
   let [따봉, 따봉변경] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
   let [선택한글, 선택한글변경] = useState(0);
+  let [입력값, 입력값변경] = useState('');
 
   return (
    <div className='App'>
@@ -39,7 +40,15 @@ function App() {
                 let 따봉각자 = [...따봉]; 
                 따봉각자[i] += 1; 
                 따봉변경(따봉각자);
-                }}>👍</span>{따봉[i]}</h4>
+                }}>👍</span>{따봉[i]} 
+
+                <button onClick={(e)=>{
+                  e.stopPropagation();
+                  let copy = [...글제목];
+                  copy.splice(i, 1);
+                  글제목변경(copy);
+                }}>글삭제</button>
+                </h4>
             </div>
             <p>2월 17일 발행</p>
           </div>
@@ -47,7 +56,16 @@ function App() {
       })
     }
 
-    <input></input>
+    <input onChange ={(e)=>{ 
+      입력값변경(e.target.value);
+      console.log(입력값)
+      }}></input>
+
+     <button onClick={()=>{
+      let copy = [...글제목];
+      copy.unshift(입력값);
+      글제목변경(copy);
+     }}>글발행</button>
     
       { 
       modal == true ? <Modal color={'yellow'} 글제목={글제목} 선택한글={선택한글} 글제목변경={글제목변경}/> : null
