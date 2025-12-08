@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import React from 'react';
 
 function App() {
   
@@ -40,17 +41,16 @@ function App() {
                 let 따봉각자 = [...따봉]; 
                 따봉각자[i] += 1; 
                 따봉변경(따봉각자);
-                }}>👍</span>{따봉[i]} 
-
-                <button onClick={(e)=>{
-                  e.stopPropagation();
-                  let copy = [...글제목];
-                  copy.splice(i, 1);
-                  글제목변경(copy);
-                }}>글삭제</button>
+                }}>👍</span>{따봉[i]}
                 </h4>
             </div>
             <p>2월 17일 발행</p>
+            <button onClick={(e)=>{
+              e.stopPropagation();
+              let copy = [...글제목];
+              copy.splice(i, 1);
+              글제목변경(copy);
+              }}>글삭제</button>
           </div>
         );
       })
@@ -70,6 +70,7 @@ function App() {
       { 
       modal == true ? <Modal color={'yellow'} 글제목={글제목} 선택한글={선택한글} 글제목변경={글제목변경}/> : null
       }
+      <Modal2></Modal2>
    </div>
   );
 }
@@ -86,6 +87,27 @@ function Modal(props){
         props.글제목변경(copy);}}>글수정</button>
     </div>
   ) 
+}
+
+
+
+class Modal2 extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      name : 'kim',
+      age : 20 
+    }
+  }
+  render(){
+    return (
+      <div>안녕 {this.state.age}{" "}
+        <button onClick={()=>{
+          this.setState( {age : 21} )
+        }}>버튼</button>
+      </div>
+    )
+  }
 }
 
 export default App
